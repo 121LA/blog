@@ -1,0 +1,24 @@
+{{include './header.html'}}
+    <div class="container">
+        <main>
+            <div class="main-sub">
+                <a href="/">网站首页 ></a>
+                <span>标签</span>
+            </div>
+            <div class="targetmain">
+                <div class="targetitle"><p>收集的标签都在这里啦~~~</p></div> 
+                <div class="targetinfo">
+                    {{each note tag}}
+                        <a href="/target/{{tag}}">
+                            {{if tag}}
+                            <span>{{tag}}</span>
+                            {{else}}
+                            <i></i>
+                            {{/if}}
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+        </main>
+    </div>
+{{include './footer.html'}}

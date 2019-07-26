@@ -1,0 +1,50 @@
+{{include './header.html'}}
+<!-- 内容区 -->
+<div class="container">
+    <main>
+        <div class="main-sub">
+            <a href="/">网站首页 ></a>
+            <span>修改</span>
+        </div>
+        <div class="blog-main">
+            <div class="send-left main-left">
+                <h1>请填写以下内容进行发布消息：</h1>
+                <form action="/detail/{{msgs._id}}/edit" method="post">
+                    <label for="title">标题：<input type="text" name="title" id="" value="{{msgs.title}}"></label>
+                    <br>
+                    <label for="target">标签：
+                        <input type="text" name="target" id="" value="{{msgs.target[0]}}">
+                        <input type="text" name="target" id="" value="{{msgs.target[1]}}">
+                        <input type="text" name="target" id="" value="{{msgs.target[2]}}">
+                    </label>
+                    <br>
+                    <label for="content">内容：</label><br>
+                    <textarea name="content" cols="120" rows="10" required>{{msgs.content}}</textarea><br>
+                    <button type="submit">保存</button> {{error}}
+                </form>
+            </div>
+            <div class="main-right">
+                <div class="classify">
+                    <p>分类</p>
+                    <ul>
+                        <li><a href="/history">点点滴滴</a></li>
+                        <li><a href="/target">标签</a></li>
+                    </ul>
+                </div>
+                <form class="search" action="/search" method="get">
+                    <input type="text" name="search">
+                    <button type="submit">搜索</button> 
+                </form>
+                <div class="concern">
+                    <div class="concern-text">关注我</div>
+                    <div class="concern-img">
+                        <img src="/img/erweima.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{{include './footer.html'}}

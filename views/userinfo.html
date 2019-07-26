@@ -1,0 +1,15 @@
+{{include './header.html'}}
+
+<div class="container">
+    <form action="/edit/userinfo" method="post">
+        <span>头像:</span>
+        <div class="header-img">
+           <img src="{{user.headerurl}}" alt="">
+            <a class="edit-btn" href="/edit/user/logout/{{user.username}}">编辑头像</a>
+        </div>
+        <label>姓名：{{user.username}}</label><br>
+        <button type="submit">修改</button>
+    </form>
+</div>
+
+{{include './footer.html'}}

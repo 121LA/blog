@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/font_orovw54dtd/iconfont.css">
+</head>
+<body>
+    <!-- 导航 -->
+    <nav>
+        <div class="container">
+            <div class="nav-left">
+                {{if user}}
+                    <div class="logout">
+                        <img src="{{user.headerurl}}" alt="">
+                        <a href="/edit/userinfo"><span class="user">{{user.username}}Blog</span></a>
+                        <a href="/logout"><span class="out">退出登录</span> </a>
+                    </div>
+                    {{else}}
+                    <div class="login">
+                        <a href="/login">登录</a>&nbsp;&nbsp;
+                        <a href="/register">注册</a>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="nav-right">
+                <ul class="nav-list">
+                    <li><a href="/"><i class="iconfont">&#xe66f;</i>&nbsp;&nbsp;博客首页</a></li>
+                    <li><a href="/history"><i class="iconfont">&#xe6ca;</i>&nbsp;&nbsp;点点滴滴</a></li>
+                    <li><a href="/target"><i class="iconfont">&#xe622;</i>&nbsp;&nbsp;标签</a></li>
+                    <li><a href="/send"><i class="iconfont">&#xe628;</i>&nbsp;&nbsp;发布</a></li>
+                    <li><a href="/about"><i class="iconfont">&#xf02a;</i>&nbsp;&nbsp;关于</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>

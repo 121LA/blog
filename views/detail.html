@@ -1,0 +1,74 @@
+{{include './header.html'}}
+    <div class="container">
+        <main>
+            <div class="main-sub">
+                <a href="/">网站首页 ></a>
+                <span>{{msgs.title}}</span>
+            </div>
+            <div class="blog-main">
+                <div class="main-left">
+                    <div class="detail-top">
+                        <h1>{{msgs.title}}</h1><span class="tag">标签：{{each msgs.target tag}} {{tag}} {{/each}}</span>
+                        <div class="detail-introduce">
+                            <span>编辑时间：{{msgs.time}}</span>
+                            <span>作者：{{msgs.author.username}}</span>  
+                            <span>浏览量：{{msgs.pageviews}}次</span>
+                            <span>评论量：{{msgs.reples.length}}</span>
+                        </div>
+                        <div class="detail-text">
+                            {{msgs.content}}
+                        </div>
+                        {{if user}}
+                        {{if user._id == msgs.author._id}}
+                        <div class="detail-end">
+                            <a class="edit" href="/detail/{{msgs._id}}/edit">编辑</a>
+                            <a class="delete" href="/detail/{{msgs._id}}/delete">删除</a>
+                        </div>
+                        {{else}}
+                        <div class="detail-end">
+                            <a class="edit" href="/detail/{{msgs._id}}/edit" hidden>编辑</a>
+                            <a class="delete" href="/detail/{{msgs._id}}/delete" hidden>删除</a>
+                        </div>
+                        {{/if}}
+
+                    </div>
+                    <div class="detail-bottom">
+                        
+                        <form action="/reply/{{msgs._id}}" method="post">
+                            <p>来说两句吧</p>
+                            <hr>
+                            <textarea name="content"></textarea>
+                            <button type="submit">提交评论</button>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="main-right">
+                    <p class="s" style="background: white;">所有评论在这里：</p>
+                    {{if msgs.reples.length==0}}
+                    <p class="null">还没有评论哦</p>
+                    {{else}}
+                    {{each msgs.reples reply}}
+                    <p class="d" style="color: red;">{{reply.username}}回复于：</p>
+                    <p class="d">{{reply.time}}</p>
+                    <p class="d">{{reply.content}}</p>
+                    {{/each}}
+                    
+                    
+                    {{/if}}
+                </div>
+            </div>
+        </main>
+    </div>
+{{include './footer.html'}}
+<script>
+    var del = document.querySelector('.delete');
+    del.onclick = function(ev){
+        var deltext = confirm('你确认删除吗？')
+        if(deltext == true){
+            alert('你已经成功删除这条消息');
+        }else{
+            alert('你撤销了删除操作');
+        }
+    }
+</script>

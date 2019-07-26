@@ -1,0 +1,58 @@
+{{include './header.html'}}
+    <!-- 内容区 -->
+    <div class="container">
+        <main>
+            <div class="main-sub">
+                <a href="/">网站首页 ></a>
+                <span>点点滴滴</span>
+            </div>
+            <div class="targetmain">
+                {{if msgs.length}}
+                <div class="targetitle"><p>生活的点点滴滴都在这里啦~~~</p></div> 
+                {{each msgs msg}}
+                <div class="targetinfo">
+                    <li class="media">
+                        <div>
+                            <h4>
+                                <span>{{msg.time}} </span>
+                                <a class="h-name" href="/userblog?author={{ msg.author._id }}">{{msg.author.username}}</a>&#x0009;&#x0009;
+                                <a class="h-title" href="/detail/{{msg._id}}">{{msg.title}}</a>
+                            </h4>
+                        </div>
+                    </li>
+                </div>
+                {{/each}}
+                {{else}}
+                <p class="null">还没有记录哦，去发布一下吧</p>
+                {{/if}}
+                {{if totalPage}}
+            <div class="main-page">
+                <a class="prev-page" href="?page={{page-1}}">上一页</a>
+                <span>第<span class="curPage">{{page}}</span>/<span class="totalPage">{{totalPage}}</span>页</span>
+                <a class="next-page" href="?page={{page+1}}">下一页</a> 
+            </div>
+            {{/if}}
+            </div>
+            
+        </main>
+    </div>
+{{include './footer.html'}}
+<script>
+var prevPage = document.querySelector('.prev-page');
+var nextPage = document.querySelector('.next-page');
+var curPage = document.querySelector('.curPage');
+var totalPage = document.querySelector('.totalPage');
+prevPage.onclick = function(ev){
+    if(curPage.innerText === '1'){
+        ev.preventDefault();
+        alert('已经是第一页了');
+    }
+}
+nextPage.onclick = function(ev){
+    if(curPage.innerText === totalPage.innerText){
+        ev.preventDefault();
+        alert('已经最后一页了');
+    }
+}
+</script>
+

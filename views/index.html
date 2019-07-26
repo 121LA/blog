@@ -1,0 +1,86 @@
+{{include './header.html'}}
+    <!-- 内容区 -->
+    <div class="container">
+        <main>
+            <div class="blog-main">
+                <div class="main-left">
+                {{if msgs.length}}
+                {{each msgs msg}}
+                <div class="msg">
+                    <div class="msg-top">
+                        <a href="/detail/{{msg._id}}"><p class="msg-title">{{msg.title}}</p></a>  
+                        <a href="/detail/{{msg._id}}"><p class="msg-content" >{{msg.content}}</p></a>  
+                    </div>
+                    <div class="msg-bottom">
+                        <div class="msg-left">
+                            <i class="iconfont">&#xe63a;</i>&nbsp;{{msg.time}}  
+                            <i class="iconfont">&#xe8e9;</i>&nbsp;<a href="/userblog?author={{ msg.author._id }}">{{msg.author.username}}</a>    
+                            <i class="iconfont">&#xe6c8;</i>&nbsp;{{each msg.target tag}}<a href="/target/{{tag}}"> {{tag}} </a>{{/each}}    
+                        </div>
+                        <div class="msg-right">
+                            <i class="iconfont">&#xe60e;</i>&nbsp;{{msg.reples.length}}
+                            <i class="iconfont">&#xe605;</i>&nbsp;{{msg.pageviews}}
+                        </div>
+                    </div>   
+                </div>
+                {{/each}}
+                {{else}}
+                <p class="null">还没有新的博客...</p>
+                {{/if}}
+                {{if totalPage}}
+                <div class="main-page">
+                    <a class="prev-page" href="?page={{page-1}}">上一页</a>
+                    <span>第<span class="curPage">{{page}}</span>/<span class="totalPage">{{totalPage}}</span>页</span>
+                    <a class="next-page" href="?page={{page+1}}">下一页</a> 
+                </div>
+                {{/if}}
+                </div>
+                <div class="main-right">
+                    <div class="classify">
+                        <p>分类</p>
+                        <ul>
+                            <li><a href="/history">点点滴滴</a></li>
+                            <li><a href="/target">标签</a></li>
+                        </ul>
+                    </div>
+                    <div class="point">
+                        <p>在下方搜索框开始你的搜索吧！</p>
+                        <img src="/img/psbe.jpg" alt="">
+                    </div>
+                    <form class="search" action="/search" method="get">
+                        <input type="text" name="search">
+                        <button type="submit">搜索</button> 
+                    </form>
+                    <div class="concern">
+                        <div class="concern-text">关注我</div>
+                        <div class="concern-img">
+                            <img src="/img/erweima.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{{include './footer.html'}}
+<script>
+var prevPage = document.querySelector('.prev-page');
+var nextPage = document.querySelector('.next-page');
+var curPage = document.querySelector('.curPage');
+var totalPage = document.querySelector('.totalPage');
+prevPage.onclick = function(ev){
+    if(curPage.innerText === '1'){
+        ev.preventDefault();
+        alert('已经是第一页了');
+    }
+}
+nextPage.onclick = function(ev){
+    if(curPage.innerText === totalPage.innerText){
+        ev.preventDefault();
+        alert('已经是最后一页了');
+    }
+}
+$(".nav-list li").click(function(){
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+});
+</script>

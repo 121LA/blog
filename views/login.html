@@ -1,0 +1,12 @@
+{{include './header.html'}}
+    <div class="container">
+        <form class="login" action="/login" method="post">
+            <label>姓名：<input type="text" name="username" required value="张三"></label><br>
+            <br>
+            <label>密码：<input type="password" name="password" required value="123"></label><br>
+            <br>
+            <button type="submit">登录</button>{{error}}
+            <br>
+        </form>
+    </div>
+{{include './footer.html'}}
